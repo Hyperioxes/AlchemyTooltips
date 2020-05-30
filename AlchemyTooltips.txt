@@ -1,0 +1,17 @@
+## Title: AlchemyTooltips
+## Author: Hyperioxes
+## Description: Displays additional information in potion, poison and alchemy master writs' tooltips.
+## Version: 1.8b
+## DependsOn: LibPrice LibAddonMenu-2.0 LibAlchemy
+## SavedVariables: AlchemyTooltipsSV
+## APIVersion: 100031
+
+
+
+
+
+
+AlchemyTooltips.lua
+languages/en.lua
+languages/$(language).lua
+
