@@ -3,7 +3,7 @@ ATT_Functions = {}
 
 
 function ATT_Functions:checkPotion(itemLink)
-	
+
 	if not ATT_Variables.isInitialized then
 		ATT_Functions:InitializePrices()
 		ATT_Variables.isInitialized = true
@@ -55,10 +55,10 @@ function ATT_Functions:checkPotion(itemLink)
 	else
 		effect3 = LibAlchemy.effectsByWritID[id % 256]
 	end
-	
+
 	local BestCombination = LibAlchemy:getBestCombination({effect1,effect2,effect3,effect4})
 	return {BestCombination,string.format("%.2f",LibAlchemy:getCraftingCost(BestCombination,itemLink)),0}
-end      
+end
 
 
 
@@ -68,13 +68,13 @@ function ATT_Functions:AddPotionInfo(tooltip, type)
 		if type[3] == 0 then
 			ZO_Tooltip_AddDivider(tooltip)
 			tooltip:AddLine(GetString(AT_CheapestCombination), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
-			
+
 			if savedVars.useOld then
 				tooltip:AddVerticalPadding(8)
 				tooltip:AddLine(ATT_Functions:PrintCombination(type[1]), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
 				tooltip:AddVerticalPadding(16)
 				tooltip:AddLine(ATT_Functions:PrintCombinationText(type[1]), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
-				
+
 			else
 				for key,value in pairs(type[1]) do
 					tooltip:AddLine("                     " .. LibAlchemy:getTextureFromID(value,42) .. "            " .. ATT_Functions:getNameFromID(value), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_LEFT, true)
@@ -83,25 +83,26 @@ function ATT_Functions:AddPotionInfo(tooltip, type)
 
 
 			end
-			
-			
-			ZO_Tooltip_AddDivider(tooltip)
-			tooltip:AddLine(GetString(AT_CraftingCost)..type[2]..' |t16:16:EsoUI/Art/currency/currency_gold.dds|t', "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
-			
+
+		if savedVars.showCraftCost then
+        		ZO_Tooltip_AddDivider(tooltip)
+        		tooltip:AddLine(GetString(AT_CraftingCost)..type[2]..' |t16:16:EsoUI/Art/currency/currency_gold.dds|t', "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
+		end
+
 
 		end
 		if type[3] == 1 then
 			ZO_Tooltip_AddDivider(tooltip)
 			tooltip:AddVerticalPadding(8)
 			tooltip:AddLine(GetString(AT_CantCraft), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
-			
+
 
 		end
 		if type[3] == 2 then
 			ZO_Tooltip_AddDivider(tooltip)
 			tooltip:AddVerticalPadding(8)
 			tooltip:AddLine(GetString(AT_SendHelp), "", 1, 1, 1, CENTER, MODIFY_TEXT_TYPE_NONE, TEXT_ALIGN_CENTER, true)
-			
+
 
 		end
 	end
@@ -139,7 +140,7 @@ function ATT_Functions:processItemLink(link)
 				newText = newText .. "/"..savedVars.effectsByWritIDShort[effect3]
 			end
 		end
-		newText = newText..")" 
+		newText = newText..")"
 		return newText, ATT_Functions:getPotionQualityBasedOnCraftingCost(craftingCost),iconTexture
 	end
 	return GetItemLinkName(link),0,0
@@ -168,13 +169,13 @@ end
 
 function ATT_Functions:countPricingAddons()
 	counter = 0
-	if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then 
+	if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then
 		counter = counter + 1
 	end
-	if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then 
+	if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then
 		counter = counter + 1
 	end
-	if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then 
+	if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then
 		counter = counter + 1
 	end
 	return counter
@@ -182,13 +183,13 @@ end
 
 function ATT_Functions:GeneratePrice(itemLink)
 	result = 0
-	if savedVars.TTCuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"ttc") ~= nil then 
+	if savedVars.TTCuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"ttc") ~= nil then
 		result = result + LibPrice.ItemLinkToPriceGold(itemLink,"ttc")*savedVars.TTCMultiplier
 	end
-	if savedVars.MMuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"mm") ~= nil then 
+	if savedVars.MMuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"mm") ~= nil then
 		result = result + LibPrice.ItemLinkToPriceGold(itemLink,"mm")*savedVars.MMMultiplier
 	end
-	if savedVars.ATTuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"att") ~= nil then 
+	if savedVars.ATTuse == true and LibPrice.ItemLinkToPriceGold(itemLink,"att") ~= nil then
 		result = result + LibPrice.ItemLinkToPriceGold(itemLink,"att")*savedVars.ATTMultiplier
 	end
 	return result/ATT_Functions:countPricingAddons()
@@ -207,7 +208,7 @@ function ATT_Functions:PrintCombination(table)
 	result = string.gsub(result,"                  +                     ","")
 	return result
 end
-        
+
 
 function ATT_Functions:PrintCombinationText(table)
 
@@ -219,7 +220,7 @@ function ATT_Functions:PrintCombinationText(table)
 	end
 	result = string.gsub(result," + ","")
 	return result
-end  
+end
 
 function ATT_Functions:getNameFromID(id)
 	return zo_strformat("<<t:1>>", GetItemLinkName(("|H0:item:%d:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"):format(id)))
@@ -285,7 +286,7 @@ function ATT_Functions:InitializePrices()
 	LibAlchemy.reagents[150672][2] = ATT_Functions:GeneratePrice("|H0:item:150671:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h")
 	LibAlchemy.reagents[150670][2] = ATT_Functions:GeneratePrice("|H0:item:139019:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h")
 	LibAlchemy.reagents[150669][2] = ATT_Functions:GeneratePrice("|H0:item:139020:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h")
-    
+
 	--solvents
 	LibAlchemy.solvents[3][1] = ATT_Functions:GeneratePrice("|H0:item:883:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") or 0
 	LibAlchemy.solvents[3][2] = ATT_Functions:GeneratePrice("|H0:item:75357:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") or 0

@@ -98,7 +98,7 @@ function ATT_HookItems()
 	ItemHook("GetSlotName", GetSlotItemLink,"Name")
 
 	ItemHook("GetItemInfo",GetItemLink,nil,{1,0,9}) -- bags
-	ItemHook("GetItemName",GetItemLink,nil,{0,1,0}) 
+	ItemHook("GetItemName",GetItemLink,nil,{0,1,0})
 
 	ItemHook("GetTradeItemInfo", GetTradeItemLink, nil,{2,1,4}) -- trade between players
 

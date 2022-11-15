@@ -8,13 +8,13 @@ function ATT_LoadSettings()
 		name = "Alchemy Tooltips",
 		displayName = "Alchemy Tooltips",
 		author = "Hyperioxes",
-		version = "1.16",
+		version = "1.17",
 		website = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html",
 		feedback = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#comments",
 		donation = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#donate",
-		slashCommand = "/alchemytooltips",    
-		registerForRefresh = true,    
-		registerForDefaults = true,    
+		slashCommand = "/alchemytooltips",
+		registerForRefresh = true,
+		registerForDefaults = true,
 	}
 	LibAddonMenu2:RegisterAddonPanel("AlchemyTooltips",panelData)
 
@@ -31,8 +31,8 @@ function ATT_LoadSettings()
 		getFunc = function() return savedVars.useTooltips end,
 		setFunc = function(value) savedVars.useTooltips=value end,
 		width = "full",
-		--warning = "Will need to reinitialize prices",    
-        
+		--warning = "Will need to reinitialize prices",
+
 	},
 	[3] = {
 		type = "checkbox",
@@ -41,8 +41,8 @@ function ATT_LoadSettings()
 		getFunc = function() return savedVars.useCustomIcons end,
 		setFunc = function(value) savedVars.useCustomIcons=value end,
 		width = "full",
-		warning = "Will need to reload UI",    
-        
+		warning = "Will need to reload UI",
+
 	},
 
 	[4] = {
@@ -68,76 +68,86 @@ function ATT_LoadSettings()
 	},
 
 	[6] = {
+		type = "checkbox",
+		name = "Show Craft Cost",
+		tooltip = "If the checkbox is on, show the craft cost.",
+		getFunc = function() return savedVars.showCraftCost end,
+		setFunc = function(value) savedVars.showCraftCost=value end,
+		width = "full",
+
+	},
+
+	[7] = {
 		type = "submenu",
 		name = "Advanced Custom Potion Names Settings",
-		tooltip = "Change the way potion names are displayed in your inventory",    
+		tooltip = "Change the way potion names are displayed in your inventory",
 		controls = {},
 	},
-    [7] = {
+    [8] = {
 		type = "submenu",
 		name = "Custom Potion Quality Settings",
-		tooltip = "Change the way potion names are displayed in your inventory",    
+		tooltip = "Change the way potion names are displayed in your inventory",
 		controls = {
 		},
-	},     
+	},
 
 
 
 
-	[8] = {
+	[9] = {
 		type = "header",
 		name = "Pricing Settings",
 		width = "full",
 	},
 
-    
 
-	[9] = {
+
+	[10] = {
 		type = "checkbox",
 		name = "Use Tamriel Trade Centre prices",
 		tooltip = "If the checkbox is on, pricing formula will use Tamriel Trade Centre's suggested price to calculate crafting cost",
 		getFunc = function() return savedVars.TTCuse end,
 		setFunc = function(value) savedVars.TTCuse=value end,
 		width = "full",
-		warning = "Will need to reinitialize prices",    
-        
+		warning = "Will need to reinitialize prices",
+
 	},
-	[10] = {
+	[11] = {
 		type = "checkbox",
 		name = "Use Master Merchant prices",
 		tooltip = "If the checkbox is on, pricing formula will use Master Merchant's average price to calculate crafting cost",
 		getFunc = function() return savedVars.MMuse end,
 		setFunc = function(value) savedVars.MMuse=value end,
-		width = "full",    
-		warning ="Will need to reinitialize prices",    
-        
+		width = "full",
+		warning ="Will need to reinitialize prices",
+
 	},
-	[11] = {
+	[12] = {
 		type = "checkbox",
 		name = "Use Arkadius' Trade Tools prices",
 		tooltip = "If the checkbox is on, pricing formula will use Arkadius Trade Tools' average price to calculate crafting cost",
 		getFunc = function() return savedVars.ATTuse end,
 		setFunc = function(value) savedVars.ATTuse=value end,
 		width = "full",
-		warning = "Will need to reinitialize prices",    
-        
+		warning = "Will need to reinitialize prices",
+
 	},
-	[12] = {
+	[13] = {
 		type = "submenu",
 		name = "Altering pricing formulas",
-		tooltip = "Add multipliers to prices extracted from pricing addons",    
+		tooltip = "Add multipliers to prices extracted from pricing addons",
 		controls = {
-            
+
 			[1] = {
 				type = "editbox",
 				name = "Tamriel Trade Centre multiplier",
 				tooltip = "Multiplies Tamriel Trade Centre's suggested price used in Alchemy Tooltips calculations by number you input",
 				getFunc = function() return savedVars.TTCMultiplier end,
 				setFunc = function(value) savedVars.TTCMultiplier = value end,
-				isMultiline = false,    
-				width = "full",    
-				warning = "Will need to reinitialize prices",    
-				default = "1",    
+				isMultiline = false,
+				width = "full",
+				warning = "Will need to reinitialize prices",
+				default = "1",
 			},
 			[2] = {
 				type = "editbox",
@@ -145,10 +155,10 @@ function ATT_LoadSettings()
 				tooltip = "Multiplies Master Merchant's suggested price used in Alchemy Tooltips calculations by number you input",
 				getFunc = function() return savedVars.MMMultiplier end,
 				setFunc = function(value) savedVars.MMMultiplier = value end,
-				isMultiline = false,    
-				width = "full",    
-				warning = "Will need to reinitialize prices",    
-				default = "1",    
+				isMultiline = false,
+				width = "full",
+				warning = "Will need to reinitialize prices",
+				default = "1",
 			},
 			[3] = {
 				type = "editbox",
@@ -156,62 +166,62 @@ function ATT_LoadSettings()
 				tooltip = "Multiplies Arkadius Trade Tools' suggested price used in Alchemy Tooltips calculations by number you input",
 				getFunc = function() return savedVars.ATTMultiplier end,
 				setFunc = function(value) savedVars.ATTMultiplier = value end,
-				isMultiline = false,    
-				width = "full",    
-				warning = "Will need to reinitialize prices",    
-				default = "1",    
+				isMultiline = false,
+				width = "full",
+				warning = "Will need to reinitialize prices",
+				default = "1",
 			},
 		},
 	},
-	[13] = {
+	[14] = {
 		type = "button",
 		name = "Reinitialize prices",
 		tooltip = "Reinitializes prices, click it after making changes to pricing settings above to update prices",
 		func = function() ATT_Functions:InitializePrices() end,
-		width = "full",     
+		width = "full",
 	},
-	[14] = {
+	[15] = {
 		type = "header",
 		name = "Example pricing formula for Blue Entoloma",
 		width = "full",
 	},
-	[15] = {
+	[16] = {
 		type = "texture",
 		image = "/esoui/art/icons/crafting_mushroom_blue_entoloma_cap_r1.dds",
-		imageWidth = 100,    
-		imageHeight = 100,    
-		width = "half",    
+		imageWidth = 100,
+		imageHeight = 100,
+		width = "half",
 	},
-	[16] = {
+	[17] = {
 		type = "description",
 		text =  function()
 			result = "("
-			if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then 
+			if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then
 				result = result .. savedVars.TTCMultiplier .. " * TTC + "
 			end
-			if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then 
+			if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then
 				result = result .. savedVars.MMMultiplier .. " * MM + "
 			end
-			if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then 
+			if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then
 				result = result .. savedVars.ATTMultiplier .. " * ATT + "
 			end
 			result = result:sub(1,-3)
 			result = result .. ") / " .. ATT_Functions:countPricingAddons()
 			return result
 		end,
-		width = "full",    
+		width = "full",
 	},
-	[17] = {
+	[18] = {
 		type = "description",
 		text =  function()
 			result = "Price: ("
-			if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then 
+			if savedVars.TTCuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc") ~= nil then
 				result = result .. savedVars.TTCMultiplier .. " * " .. string.format("%.3f",LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","ttc")) .. " + "
 			end
-			if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then 
+			if savedVars.MMuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm") ~= nil then
 				result = result .. savedVars.MMMultiplier .. " * " .. string.format("%.3f",LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","mm")) .. " + "
 			end
-			if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then 
+			if savedVars.ATTuse and LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att") ~= nil then
 				result = result .. savedVars.ATTMultiplier .. " * " .. string.format("%.3f",LibPrice.ItemLinkToPriceGold("|H0:item:30148:30:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h","att")) .. " + "
 			end
 			result = result:sub(1,-3)
@@ -220,26 +230,26 @@ function ATT_LoadSettings()
 		end,
 		width = "full",
 	},
-	[18] = {
+	[19] = {
 		type = "header",
 		name = "Other Settings",
 		width = "full",
 	},
-	[19] = {
+	[20] = {
 		type = "checkbox",
 		name = "Use old tooltip layout",
 		tooltip = "If the checkbox is on, tooltip layout will look like before version 1.5",
 		getFunc = function() return savedVars.useOld end,
 		setFunc = function(value) savedVars.useOld=value end,
 		width = "full",
-  
-        
+
+
 	},
 
 }
 
 
-	table.insert(optionsTable[6].controls,{
+	table.insert(optionsTable[7].controls,{
 			type = "description",
 			text = "For any changes made here to take effect you will need to reload ui",
 			width = "full",
@@ -247,7 +257,7 @@ function ATT_LoadSettings()
 		})
 
 
-	table.insert(optionsTable[6].controls,{
+	table.insert(optionsTable[7].controls,{
 			type = "description",
 			text = "Full name of an effect  --->  Name displayed in inventory",
 			width = "full",
@@ -257,18 +267,18 @@ function ATT_LoadSettings()
 
 	for key,name in pairs(ATT_Variables.properEffectNames) do
 
-		table.insert(optionsTable[6].controls,{
+		table.insert(optionsTable[7].controls,{
 			type = "description",
 			text = name.."  --->  "..savedVars.effectsByWritIDShort[key],
 			width = "half",
 			reference = "description"..key
 		})
 
-		 table.insert(optionsTable[6].controls, {
+		 table.insert(optionsTable[7].controls, {
                 type = "editbox",
                 name = "Change displayed name to:",
                 getFunc = function() return savedVars.effectsByWritIDShort[key] end,
-                setFunc = function(text) savedVars.effectsByWritIDShort[key] = text 
+                setFunc = function(text) savedVars.effectsByWritIDShort[key] = text
 				_G["description"..key].data.text = name.."  --->  "..savedVars.effectsByWritIDShort[key]
 				_G["description"..key]:UpdateValue()
 				end,
@@ -279,20 +289,20 @@ function ATT_LoadSettings()
             })
 
 	end
-	table.insert(optionsTable[7].controls,{
+	table.insert(optionsTable[8].controls,{
 			type = "description",
 			text = "For any changes made here to take effect you will need to reload ui",
 			width = "full",
 
 	})
 	for i=1,5 do
-		table.insert(optionsTable[7].controls, {
+		table.insert(optionsTable[8].controls, {
 				type = "description",
 				text = ATT_Variables.qualityColors[i].." quality:  "..savedVars.craftingCostQualityBrackets[i-1].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t - "..savedVars.craftingCostQualityBrackets[i].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t",
 				width = "half",
 				reference = "qualityDescription"..i,
 		})
-		table.insert(optionsTable[7].controls, {
+		table.insert(optionsTable[8].controls, {
                 type = "editbox",
                 name = "Change top bracket to:",
                 getFunc = function() return savedVars.craftingCostQualityBrackets[i] end,
@@ -312,7 +322,7 @@ function ATT_LoadSettings()
                 default = "",	--(optional)
         })
 	end
-	table.insert(optionsTable[7].controls, {
+	table.insert(optionsTable[8].controls, {
 			type = "description",
 			text = ATT_Variables.qualityColors[6].." quality:  "..savedVars.craftingCostQualityBrackets[5].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t and more",
 			width = "full",

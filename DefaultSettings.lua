@@ -10,6 +10,7 @@ ATT_defaultSettings =  {
 				useCustomNames = true,
 				useCustomIcons = true,
 				useCustomQualities = true,
+				showCraftCost = true,
 				craftingCostQualityBrackets = {
 					[0] = 0,
 					[1] = 0,

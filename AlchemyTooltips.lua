@@ -26,7 +26,7 @@ do
 				ATT_HookItems()
 			end
 
-			ATT_LoadSettings() 
+			ATT_LoadSettings()
             --overrideDebug()
 		end
 	end
