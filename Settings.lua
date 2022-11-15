@@ -8,7 +8,7 @@ function ATT_LoadSettings()
 		name = "Alchemy Tooltips",
 		displayName = "Alchemy Tooltips",
 		author = "Hyperioxes",
-		version = "1.15a",
+		version = "1.15b",
 		website = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html",
 		feedback = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#comments",
 		donation = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#donate",
@@ -145,7 +145,7 @@ function ATT_LoadSettings()
 		type = "button",
 		name = "Reinitialize prices",
 		tooltip = "Reinitializes prices, click it after making changes to pricing settings above to update prices",
-		func = function() InitializePrices() end,
+		func = function() ATT_Functions:InitializePrices() end,
 		width = "full",     
 	},
 	[12] = {
