@@ -1,10 +1,10 @@
 ## Title: AlchemyTooltips
 ## Author: Hyperioxes
 ## Description: Displays additional information in potion, poison and alchemy master writs' tooltips. Changes names and icons of potions and poisons
-## Version: 1.15b
+## Version: 1.16
 ## DependsOn: LibPrice LibAddonMenu-2.0 LibAlchemy
 ## SavedVariables: AlchemyTooltipsSV
-## APIVersion: 100033
+## APIVersion: 100035
 
 
 

@@ -8,7 +8,7 @@ function ATT_LoadSettings()
 		name = "Alchemy Tooltips",
 		displayName = "Alchemy Tooltips",
 		author = "Hyperioxes",
-		version = "1.15b",
+		version = "1.16",
 		website = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html",
 		feedback = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#comments",
 		donation = "https://www.esoui.com/downloads/info2531-AlchemyTooltips.html#donate",
@@ -36,22 +36,44 @@ function ATT_LoadSettings()
 	},
 	[3] = {
 		type = "checkbox",
-		name = "Use Custom Potion Names",
-		tooltip = "If the checkbox is on, potion names and icons will be altered to reflect their actual effects",
-		getFunc = function() return savedVars.useCustomNames end,
-		setFunc = function(value) savedVars.useCustomNames=value end,
+		name = "Use Custom Potion Icons",
+		tooltip = "If the checkbox is on, some potion icons will be altered to reflect their actual effects",
+		getFunc = function() return savedVars.useCustomIcons end,
+		setFunc = function(value) savedVars.useCustomIcons=value end,
 		width = "full",
 		warning = "Will need to reload UI",    
         
 	},
 
 	[4] = {
+		type = "checkbox",
+		name = "Use Custom Potion Names",
+		tooltip = "If the checkbox is on, potion names will be altered to reflect their actual effects",
+		getFunc = function() return savedVars.useCustomNames end,
+		setFunc = function(value) savedVars.useCustomNames=value end,
+		width = "full",
+		warning = "Will need to reload UI",
+
+	},
+
+	[5] = {
+		type = "checkbox",
+		name = "Use Custom Potion Quality Colors",
+		tooltip = "If the checkbox is on, potion name colors will be altered to reflect their crafting cost",
+		getFunc = function() return savedVars.useCustomQualities end,
+		setFunc = function(value) savedVars.useCustomQualities=value end,
+		width = "full",
+		warning = "Will need to reload UI",
+
+	},
+
+	[6] = {
 		type = "submenu",
 		name = "Advanced Custom Potion Names Settings",
 		tooltip = "Change the way potion names are displayed in your inventory",    
 		controls = {},
 	},
-    [5] = {
+    [7] = {
 		type = "submenu",
 		name = "Custom Potion Quality Settings",
 		tooltip = "Change the way potion names are displayed in your inventory",    
@@ -62,7 +84,7 @@ function ATT_LoadSettings()
 
 
 
-	[6] = {
+	[8] = {
 		type = "header",
 		name = "Pricing Settings",
 		width = "full",
@@ -70,7 +92,7 @@ function ATT_LoadSettings()
 
     
 
-	[7] = {
+	[9] = {
 		type = "checkbox",
 		name = "Use Tamriel Trade Centre prices",
 		tooltip = "If the checkbox is on, pricing formula will use Tamriel Trade Centre's suggested price to calculate crafting cost",
@@ -80,7 +102,7 @@ function ATT_LoadSettings()
 		warning = "Will need to reinitialize prices",    
         
 	},
-	[8] = {
+	[10] = {
 		type = "checkbox",
 		name = "Use Master Merchant prices",
 		tooltip = "If the checkbox is on, pricing formula will use Master Merchant's average price to calculate crafting cost",
@@ -90,7 +112,7 @@ function ATT_LoadSettings()
 		warning ="Will need to reinitialize prices",    
         
 	},
-	[9] = {
+	[11] = {
 		type = "checkbox",
 		name = "Use Arkadius' Trade Tools prices",
 		tooltip = "If the checkbox is on, pricing formula will use Arkadius Trade Tools' average price to calculate crafting cost",
@@ -100,7 +122,7 @@ function ATT_LoadSettings()
 		warning = "Will need to reinitialize prices",    
         
 	},
-	[10] = {
+	[12] = {
 		type = "submenu",
 		name = "Altering pricing formulas",
 		tooltip = "Add multipliers to prices extracted from pricing addons",    
@@ -141,26 +163,26 @@ function ATT_LoadSettings()
 			},
 		},
 	},
-	[11] = {
+	[13] = {
 		type = "button",
 		name = "Reinitialize prices",
 		tooltip = "Reinitializes prices, click it after making changes to pricing settings above to update prices",
 		func = function() ATT_Functions:InitializePrices() end,
 		width = "full",     
 	},
-	[12] = {
+	[14] = {
 		type = "header",
 		name = "Example pricing formula for Blue Entoloma",
 		width = "full",
 	},
-	[13] = {
+	[15] = {
 		type = "texture",
 		image = "/esoui/art/icons/crafting_mushroom_blue_entoloma_cap_r1.dds",
 		imageWidth = 100,    
 		imageHeight = 100,    
 		width = "half",    
 	},
-	[14] = {
+	[16] = {
 		type = "description",
 		text =  function()
 			result = "("
@@ -179,7 +201,7 @@ function ATT_LoadSettings()
 		end,
 		width = "full",    
 	},
-	[15] = {
+	[17] = {
 		type = "description",
 		text =  function()
 			result = "Price: ("
@@ -198,12 +220,12 @@ function ATT_LoadSettings()
 		end,
 		width = "full",
 	},
-	[16] = {
+	[18] = {
 		type = "header",
 		name = "Other Settings",
 		width = "full",
 	},
-	[17] = {
+	[19] = {
 		type = "checkbox",
 		name = "Use old tooltip layout",
 		tooltip = "If the checkbox is on, tooltip layout will look like before version 1.5",
@@ -217,7 +239,7 @@ function ATT_LoadSettings()
 }
 
 
-	table.insert(optionsTable[4].controls,{
+	table.insert(optionsTable[6].controls,{
 			type = "description",
 			text = "For any changes made here to take effect you will need to reload ui",
 			width = "full",
@@ -225,7 +247,7 @@ function ATT_LoadSettings()
 		})
 
 
-	table.insert(optionsTable[4].controls,{
+	table.insert(optionsTable[6].controls,{
 			type = "description",
 			text = "Full name of an effect  --->  Name displayed in inventory",
 			width = "full",
@@ -235,14 +257,14 @@ function ATT_LoadSettings()
 
 	for key,name in pairs(ATT_Variables.properEffectNames) do
 
-		table.insert(optionsTable[4].controls,{
+		table.insert(optionsTable[6].controls,{
 			type = "description",
 			text = name.."  --->  "..savedVars.effectsByWritIDShort[key],
 			width = "half",
 			reference = "description"..key
 		})
 
-		 table.insert(optionsTable[4].controls, {
+		 table.insert(optionsTable[6].controls, {
                 type = "editbox",
                 name = "Change displayed name to:",
                 getFunc = function() return savedVars.effectsByWritIDShort[key] end,
@@ -257,20 +279,20 @@ function ATT_LoadSettings()
             })
 
 	end
-	table.insert(optionsTable[5].controls,{
+	table.insert(optionsTable[7].controls,{
 			type = "description",
 			text = "For any changes made here to take effect you will need to reload ui",
 			width = "full",
 
 	})
 	for i=1,5 do
-		table.insert(optionsTable[5].controls, {
+		table.insert(optionsTable[7].controls, {
 				type = "description",
 				text = ATT_Variables.qualityColors[i].." quality:  "..savedVars.craftingCostQualityBrackets[i-1].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t - "..savedVars.craftingCostQualityBrackets[i].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t",
 				width = "half",
 				reference = "qualityDescription"..i,
 		})
-		table.insert(optionsTable[5].controls, {
+		table.insert(optionsTable[7].controls, {
                 type = "editbox",
                 name = "Change top bracket to:",
                 getFunc = function() return savedVars.craftingCostQualityBrackets[i] end,
@@ -290,7 +312,7 @@ function ATT_LoadSettings()
                 default = "",	--(optional)
         })
 	end
-	table.insert(optionsTable[5].controls, {
+	table.insert(optionsTable[7].controls, {
 			type = "description",
 			text = ATT_Variables.qualityColors[6].." quality:  "..savedVars.craftingCostQualityBrackets[5].."|t16:16:EsoUI/Art/currency/currency_gold.dds|t and more",
 			width = "full",

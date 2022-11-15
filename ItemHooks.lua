@@ -9,20 +9,26 @@ local function ItemHook(functionName, itemLinkFunction,exception,tableOfOrder)
 			if GetItemLinkItemType(link) == 30 or GetItemLinkItemType(link) == 7 then
 				newText,qualityNumber,iconTexture = ATT_Functions:processItemLink(link)
 				if exception == "Quality" then
-					return qualityNumber
+					if savedVars.useCustomQualities then
+						return qualityNumber
+					end
 				elseif exception == "Name" then
-					return newText
+					if savedVars.useCustomNames then
+						return newText
+					end
 				else
 					local data = {old(...)} --{icon,name,quality}
-					if iconTexture ~= 0 then
+					if iconTexture ~= 0 and savedVars.useCustomIcons then
 						data[tableOfOrder[1]] = iconTexture
 					end
-					data[tableOfOrder[2]] = newText
-					if qualityNumber ~= 0 then
+					if savedVars.useCustomNames then
+						data[tableOfOrder[2]] = newText
+					end
+					if qualityNumber ~= 0 and savedVars.useCustomQualities then
 						data[tableOfOrder[3]] = qualityNumber
 					end
 					return unpack(data)
-				end
+					end
 			end
         return old(...)
     end
@@ -35,7 +41,7 @@ local function ItemHookIcon()
 		local link = GetSlotItemLink(...)
 		if GetItemLinkItemType(link) == 30 or GetItemLinkItemType(link) == 7 then
 			iconTexture = ATT_Functions:GetCustomIconFromItemLink(link)
-			if iconTexture then
+			if iconTexture and savedVars.useCustomIcons then
 				return iconTexture
 			end
 		end
@@ -50,7 +56,7 @@ local function ItemHookQuality()
 		local link = GetSlotItemLink(...)
 		if GetItemLinkItemType(link) == 30 or GetItemLinkItemType(link) == 7 then
 			quality = ATT_Functions:GetCustomQualityFromItemLink(link)
-			if quality then
+			if quality and savedVars.useCustomQualities then
 				return quality
 			end
 		end
@@ -66,7 +72,7 @@ local function ItemHookAttachedIcon()
 		local link = GetItemLink(data[1],data[2])
 		if GetItemLinkItemType(link) == 30 or GetItemLinkItemType(link) == 7 then
 			iconTexture = ATT_Functions:GetCustomIconFromItemLink(link)
-			if iconTexture then
+			if iconTexture and savedVars.useCustomIcons then
 				data[3] = iconTexture
 				return unpack(data)
 			end
