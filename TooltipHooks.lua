@@ -7,7 +7,7 @@ end
 
 
 
-    
+
 
 local function TooltipHook(tooltipControl, method, linkFunc)
 	local origMethod = tooltipControl[method]
@@ -20,16 +20,16 @@ local function TooltipHook(tooltipControl, method, linkFunc)
 		else
 			quality,icon = 0,0
 		end
-		
+
 		local orgText = GetString(SI_TOOLTIP_ITEM_NAME)
 		if quality ~= 0 then
 			local color = GetItemQualityColor(quality)
-			SafeAddString(SI_TOOLTIP_ITEM_NAME, color:Colorize(GetString(SI_TOOLTIP_ITEM_NAME)), 1)		
+			SafeAddString(SI_TOOLTIP_ITEM_NAME, color:Colorize(GetString(SI_TOOLTIP_ITEM_NAME)), 1)
 		end
-		
+
 		origMethod(self, ...)
 		SafeAddString(SI_TOOLTIP_ITEM_NAME, orgText, 1)
-		
+
 		if icon ~= 0 then
 			ZO_ItemIconTooltip_OnAddGameData(tooltipControl, TOOLTIP_GAME_DATA_ITEM_ICON , icon)
 		end
@@ -52,21 +52,21 @@ local function TooltipHook_Gamepad(tooltipControl, method, linkFunc)
 		else
 			quality,icon = 0,0
 		end
-		
+
 		local orgText = GetString(SI_TOOLTIP_ITEM_NAME)
 		if quality ~= 0 then
 			local color = GetItemQualityColor(quality)
-			SafeAddString(SI_TOOLTIP_ITEM_NAME, color:Colorize(GetString(SI_TOOLTIP_ITEM_NAME)), 1)		
+			SafeAddString(SI_TOOLTIP_ITEM_NAME, color:Colorize(GetString(SI_TOOLTIP_ITEM_NAME)), 1)
 		end
-		
-		
+
+
 		SafeAddString(SI_TOOLTIP_ITEM_NAME, orgText, 1)
-		
+
 		if icon ~= 0 then
 			ZO_ItemIconTooltip_OnAddGameData(tooltipControl, TOOLTIP_GAME_DATA_ITEM_ICON , icon)
 		end
 		ATT_Functions:AddPotionInfo(self, ATT_Functions:checkPotion(link))
-		
+
 		return result
 	end
 end

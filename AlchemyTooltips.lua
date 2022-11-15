@@ -22,11 +22,11 @@ do
 			savedVars = ZO_SavedVars:NewAccountWide("AlchemyTooltipsSV", 1, nil, ATT_defaultSettings)
 			ATT_HookBagTips()
 			ATT_Functions:InitializePrices()
-			if savedVars.useCustomNames then
+			if savedVars.useCustomNames or savedVars.useCustomIcons or savedVars.useCustomQualities then
 				ATT_HookItems()
 			end
 
-			ATT_LoadSettings() 
+			ATT_LoadSettings()
             --overrideDebug()
 		end
 	end

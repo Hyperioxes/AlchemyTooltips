@@ -1,5 +1,5 @@
 ATT_Variables = {
-	
+
 	name = "AlchemyTooltips",
 
 	isInitialized = false,
